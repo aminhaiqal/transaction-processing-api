@@ -18,11 +18,13 @@ class Transaction(Base, TimestampMixin):
     fraud_flags=Column(Text)
     original_transaction_id=Column(String(36), ForeignKey("transactions.transaction_id"))
     metadata=Column(Text)
+    idempotency_key = Column(String(64), nullable=False)
 
     __table_args__= (
         Index("idx_transaction_user_id", "user_id"),
         Index("idx_transaction_status", "status"),
         Index("idx_transaction_created_at", "created_at"),
         Index("idx_transactions_user_created", "user_id", "created_at"),
-        Index("idx_transactions_fraud_score", "fraud_score")
+        Index("idx_transactions_fraud_score", "fraud_score"),
+        Index("idx_idempotency_window", "user_id", "idempotency_key")
     )
