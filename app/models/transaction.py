@@ -17,7 +17,7 @@ class Transaction(Base, TimestampMixin):
     fraud_score=Column(Integer, default=0, nullable=False)
     fraud_flags=Column(Text)
     original_transaction_id=Column(String(36), ForeignKey("transactions.transaction_id"))
-    metadata=Column(Text)
+    meta=Column(Text)
     idempotency_key = Column(String(64), nullable=False)
 
     __table_args__= (
