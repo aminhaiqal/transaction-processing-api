@@ -10,7 +10,8 @@ class UserService:
         self.db = db
 
     def get_by_id(self, user_id: str):
-        return self.repo.get_by_id(user_id=user_id)
+        user = self.repo.get_by_id(user_id=user_id)
+        return user
     
     def create_user(self, email: str, full_name: str, currency: str) -> User:
         try:

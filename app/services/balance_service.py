@@ -1,4 +1,5 @@
 from decimal import Decimal
+from app.models.user import User
 from app.repositories.transaction_repo import TransactionRepo
 from app.repositories.user_repo import UserRepo
 from app.services.currency_service import CurrencyService
@@ -9,15 +10,11 @@ class BalanceService:
         self.tx_repo = tx_repo
         self.service = service
 
-    def check_and_calculate_balance(self, user_id: str, amount: Decimal, currency: str, transaction_type: str) -> Decimal:
-        user = self.user_repo.get_by_id(user_id=user_id)
-        if user is None:
-            raise ValueError("User not found")
-        
+    def check_and_calculate_balance(self, user: User, amount: Decimal, currency: str, transaction_type: str) -> Decimal:
         amount_myr = self.service.to_myr(amount=amount, currency=currency)
         wallet_balance = user.wallet_balance
 
-        pending_total = self.tx_repo.sum_pending_purchases_myr(user_id=user_id)
+        pending_total = self.tx_repo.sum_pending_purchases_myr(user_id=user.user_id)
         available_balance = wallet_balance - pending_total
         
         if transaction_type in {"purchase", "withdrawal"}:

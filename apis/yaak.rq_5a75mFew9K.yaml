@@ -2,7 +2,7 @@ type: http_request
 model: http_request
 id: rq_5a75mFew9K
 createdAt: 2025-12-16T16:36:58.411546659
-updatedAt: 2025-12-16T16:37:14.114371815
+updatedAt: 2025-12-16T18:39:14.106946378
 workspaceId: wk_gx4i8jzmGU
 folderId: fl_rEpVfxFfWz
 authentication: {}
@@ -12,7 +12,7 @@ bodyType: null
 description: ''
 headers: []
 method: GET
-name: ''
+name: Read User
 sortPriority: -1765883756566.0
-url: http://${[ host ]}:${[ port ]}${[ v1 ]}/user/2a1daa9b-a7b8-4428-b3b4-6b5430636628
+url: http://${[ host ]}:${[ port ]}${[ v1 ]}/user/2fffb0bd-5f73-46fd-967a-0b93357ba826
 urlParameters: []

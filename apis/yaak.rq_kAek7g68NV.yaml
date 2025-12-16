@@ -2,15 +2,36 @@ type: http_request
 model: http_request
 id: rq_kAek7g68NV
 createdAt: 2025-12-16T11:14:10.224361770
-updatedAt: 2025-12-16T14:54:38.909854956
+updatedAt: 2025-12-16T19:07:42.526882616
 workspaceId: wk_gx4i8jzmGU
 folderId: fl_2wscGnggxz
 authentication: {}
 authenticationType: null
-body: {}
-bodyType: null
+body:
+  text: |-
+    {
+      "user_id": "2fffb0bd-5f73-46fd-967a-0b93357ba826",
+      "amount": 45.50,
+      "currency": "MYR",
+      "merchant_name": "Starbucks Pavilion KL",
+      "merchant_category": "food_beverage",
+      "transaction_type": "topup"
+    }
+bodyType: application/json
 description: ''
-headers: []
+headers:
+- enabled: true
+  name: Content-Type
+  value: application/json
+  id: DzvQ8tTj36
+- enabled: true
+  name: Idempotency-Key
+  value: c9249bba-2e10-4dcc-bb3f-2c8728643929
+  id: XvK9ERjV4r
+- enabled: true
+  name: ''
+  value: ''
+  id: yhT38e0y7a
 method: POST
 name: Make Transaction
 sortPriority: 0.0
