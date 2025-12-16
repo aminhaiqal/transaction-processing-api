@@ -5,7 +5,7 @@ from decimal import Decimal
 from app.services.transaction_service import TransactionService
 from app.services.user_service import UserService
 
-router = APIRouter(prefix="/transacitons", tags=["transactions"])
+router = APIRouter(prefix="/transaction", tags=["transactions"])
 
 @router.post("/purchase")
 def create_purchase_transaction(user_id: str, amount: Decimal, currency: str, merchant_name: str, merchant_category: str, transaction_type: str, idempotency_key: str):

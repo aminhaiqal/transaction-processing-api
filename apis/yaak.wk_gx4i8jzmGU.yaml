@@ -1,0 +1,14 @@
+type: workspace
+model: workspace
+id: wk_gx4i8jzmGU
+createdAt: 2025-12-16T10:38:07.389403534
+updatedAt: 2025-12-16T10:38:07.389404376
+authentication: {}
+authenticationType: null
+description: ''
+headers: []
+name: TRANSACTION-PROCESSING-API
+encryptionKeyChallenge: null
+settingValidateCertificates: true
+settingFollowRedirects: true
+settingRequestTimeout: 0

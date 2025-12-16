@@ -1,0 +1,13 @@
+type: folder
+model: folder
+id: fl_2wscGnggxz
+createdAt: 2025-12-16T11:13:54.736440623
+updatedAt: 2025-12-16T11:13:57.751190245
+workspaceId: wk_gx4i8jzmGU
+folderId: null
+authentication: {}
+authenticationType: null
+description: ''
+headers: []
+name: Transactions
+sortPriority: 1000.0

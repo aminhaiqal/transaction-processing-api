@@ -10,9 +10,10 @@ class UserRepo:
         return self.db.query(User).filter(User.user_id == user_id).first()
 
     def create(self, **kwargs):
-        tx = User(**kwargs)
-        self.db.add(tx)
-        return tx
+        user = User(**kwargs)
+        self.db.add(user)
+        self.db.flush()
+        return user
     
     def update_balance(self, user_id: str, new_balance: Decimal):
         user = (
