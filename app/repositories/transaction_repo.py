@@ -11,6 +11,9 @@ class TransactionRepo:
     def get_by_id(self, transaction_id: str):
         return self.db.query(Transaction).filter(Transaction.transaction_id == transaction_id).first()
     
+    def get_all_by_user_id(self, user_id: str):
+        return self.db.query(Transaction).filter(Transaction.user_id == user_id).all()
+    
     def create(self, **kwargs):
         tx = Transaction(**kwargs)
         self.db.add(tx)

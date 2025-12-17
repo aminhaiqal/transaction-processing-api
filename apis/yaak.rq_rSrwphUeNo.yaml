@@ -2,7 +2,7 @@ type: http_request
 model: http_request
 id: rq_rSrwphUeNo
 createdAt: 2025-12-16T10:39:33.431095220
-updatedAt: 2025-12-16T14:54:42.564916586
+updatedAt: 2025-12-17T13:39:35.743927681
 workspaceId: wk_gx4i8jzmGU
 folderId: fl_2wscGnggxz
 authentication: {}
@@ -14,5 +14,5 @@ headers: []
 method: GET
 name: Get User Transactions
 sortPriority: 0.0
-url: http://${[ host ]}:${[ port ]}${[ v1 ]}/transaction
+url: http://${[ host ]}:${[ port ]}${[ v1 ]}/transaction/all/2fffb0bd-5f73-46fd-967a-0b93357ba826
 urlParameters: []

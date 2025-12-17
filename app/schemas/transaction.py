@@ -1,5 +1,6 @@
 from pydantic import BaseModel
 from decimal import Decimal
+import datetime
 
 class TransactionCreate(BaseModel):
     user_id: str
@@ -18,6 +19,7 @@ class TransactionResponse(BaseModel):
     merchant_category: str
     transaction_type: str
     status: str
+    created_at: datetime.datetime
 
     class Config:
         from_attribute: True
