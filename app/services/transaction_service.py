@@ -9,11 +9,14 @@ from app.validators.transaction_validator import TransactionValidator
 from datetime import datetime, timedelta
 from decimal import Decimal
 
+from app.validators.user_validator import UserValidator
+
 class TransactionService:
-    def __init__(self, repo: TransactionRepo, validator: TransactionValidator, balance_service: BalanceService, user_service: UserService, db: Session):
+    def __init__(self, repo: TransactionRepo, tx_validator: TransactionValidator, user_validator: UserValidator, balance_service: BalanceService, user_service: UserService, db: Session):
         self.repo = repo
         self.db = db
-        self.validator = validator
+        self.tx_validator = tx_validator
+        self.user_validator = user_validator
         self.balance_service = balance_service
         self.user_service = user_service
 
@@ -41,7 +44,8 @@ class TransactionService:
             if existing:
                 return existing
             
-            self.validator.validate_transaction_amount(amount=amount, currency=currency, transaction_type=transaction_type)
+            self.user_validator.validate_can_transact(user=user)
+            self.tx_validator.validate_transaction_amount(amount=amount, currency=currency, transaction_type=transaction_type)
             new_balance = self.balance_service.check_and_calculate_balance(user=user, amount=amount, currency=currency, transaction_type=transaction_type)
             tx_data = {
                 "user_id": user.user_id,
@@ -57,13 +61,16 @@ class TransactionService:
             tx = self.repo.create(**tx_data)
             tx = self.update_status(tx=tx, new_status="completed")
 
-            user.wallet_balance = self.balance_service.update_balance(user_id=user.user_id, new_balance=new_balance)
+            self.balance_service.update_balance(user_id=user.user_id, new_balance=new_balance)
 
             self.db.commit()
             self.db.refresh(tx)
             self.db.refresh(user)
             return tx
-        
-        except Exception as e:
-            print(e)
+
+        except ValueError as e:
+            self.db.rollback()
+            raise e
+
+        except Exception:
             self.db.rollback()

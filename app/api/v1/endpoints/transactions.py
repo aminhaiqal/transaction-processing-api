@@ -11,6 +11,7 @@ from app.services.currency_service import CurrencyService
 from app.services.transaction_service import TransactionService
 from app.services.user_service import UserService
 from app.validators.transaction_validator import TransactionValidator
+from app.validators.user_validator import UserValidator
 
 router = APIRouter(prefix="/transaction", tags=["transactions"])
 
@@ -24,7 +25,8 @@ def create_purchase_transaction(payload: TransactionCreate, idempotency_key: str
 
     tx_service = TransactionService(
         repo=tx_repo, 
-        validator=TransactionValidator(service=currency_service),
+        tx_validator=TransactionValidator(service=currency_service),
+        user_validator=UserValidator(),
         balance_service=BalanceService(user_repo=user_repo, tx_repo=tx_repo, service=currency_service),
         user_service=user_service, 
         db=db
