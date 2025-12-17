@@ -13,8 +13,8 @@ FX_RATES = {
     "SGD": Decimal("3.45"),
 }
 
-MIN_AMOUNT = 0.01
-MAX_AMOUNT = 50000
+MIN_AMOUNT = Decimal("0.01")
+MAX_AMOUNT = Decimal("50000")
 
-POSITIVE_TYPES = {"purchase", "topup", "withdrawal"}
-NEGATIVE_TYPES = {"refund"}
+POSITIVE_TYPES = {"topup", "refund"}
+NEGATIVE_TYPES = {"purchase", "withdrawal"}

@@ -50,7 +50,8 @@ class TransactionService:
                 "merchant_name": merchant_name,
                 "merchant_category": merchant_category,
                 "transaction_type": transaction_type,
-                "status": "pending"
+                "status": "pending",
+                "idempotency_key": idempotency_key
             }
             
             tx = self.repo.create(**tx_data)
@@ -64,4 +65,5 @@ class TransactionService:
             return tx
         
         except Exception as e:
+            print(e)
             self.db.rollback()

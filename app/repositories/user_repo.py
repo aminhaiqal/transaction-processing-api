@@ -24,4 +24,3 @@ class UserRepo:
         )
 
         user.wallet_balance = new_balance
-        return user

@@ -44,7 +44,6 @@ class BalanceService:
         return new_balance
     
     def update_balance(self, user_id: str, new_balance: Decimal):
-        user = self.user_repo.update_balance(user_id=user_id, new_balance=new_balance)
-        user.wallet_balance = new_balance
+        self.user_repo.update_balance(user_id=user_id, new_balance=new_balance)
 
-        return user
+        return new_balance

@@ -15,8 +15,8 @@ class TransactionValidator:
         if amount_myr > Decimal(str(MAX_AMOUNT)):
             raise ValueError("Amount must be lesser than RM 50,000")
         
-        if transaction_type in POSITIVE_TYPES and amount <= 0:
+        if transaction_type in POSITIVE_TYPES and amount <= Decimal("0"):
             raise ValueError(f"{transaction_type} amount must be positive")
         
-        if transaction_type in NEGATIVE_TYPES and amount >= 0:
+        if transaction_type in NEGATIVE_TYPES and amount >= Decimal("0"):
             raise ValueError(f"{transaction_type} amount must be negative")
